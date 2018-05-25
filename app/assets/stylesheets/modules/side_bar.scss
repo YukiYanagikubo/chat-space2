@@ -1,0 +1,44 @@
+.side-bar {
+  box-sizing: border-box;
+  color: $white;
+  width: 300px;
+  .header {
+    background-color: $side_blue_dark;
+    height: 100px;
+    line-height: 100px;
+    padding: 0 20px;
+    &__name {
+      display: inline-block;
+      font-size: $side_header_font;
+      font-weight: bold;
+    }
+    &__lists {
+      display: inline-block;
+      float: right;
+      .list {
+        display: inline-block;
+      }
+      .icon {
+        color: $white;
+        font-size: $side_header_font;
+      }
+    }
+  }
+
+  .groups {
+    background-color: $side_blue_light;
+    height: calc(100vh - 100px);
+    padding: 0 20px;
+    .group {
+      box-sizing: border-box;
+      padding: 20px 0 40px;
+      &__name {
+        font-size: $side_group_name;
+      }
+      &__message {
+        font-size: $side_group_message;
+        margin-top: 5px;
+      }
+    }
+  }
+}
