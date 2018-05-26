@@ -1,5 +1,5 @@
 .wrapper
-  = render 'messages/shared/side_bar'
+  = render 'shared/side_bar'
   .chat
     .header
       .left-header
@@ -17,12 +17,12 @@
         .right-header__button
           Edit
     .messages
-      = render partial: "messages/shared/messages"
+      = render @messages
     .form
-      %form
-        %input.form__message
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
-          %label.form__mask__image
+          = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
-            %input.hidden{type: 'file'}
-        %input.form__submit{type: 'submit', value: 'Send'}
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
