@@ -11,31 +11,21 @@
     .chat-group-form__field--right
       = f.text_field :name, class: 'chat__group_name chat-group-form__input', placeholder: 'グループ名を入力してください'
   .chat-group-form__field.clearfix
-    / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
-    /
-      <div class='chat-group-form__field--left'>
-      <label class="chat-group-form__label" for="chat_group_チャットメンバーを追加">チャットメンバーを追加</label>
-      </div>
-      <div class='chat-group-form__field--right'>
-      <div class='chat-group-form__search clearfix'>
-      <input class='chat-group-form__input' id='user-search-field' placeholder='追加したいユーザー名を入力してください' type='text'>
-      </div>
-      <div id='user-search-result'></div>
-      </div>
+    .chat-group-form__field--left
+      %label.chat-group-form__label{:for => "chat_group_チャットメンバーを追加"} チャットメンバーを追加
+    .chat-group-form__field--right
+      .chat-group-form__search.clearfix
+        %input#user-search-field.chat-group-form__input{:placeholder => "追加したいユーザー名を入力してください", name: "keyword", :type => "text"}/
+      #user-search-result
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      %label.chat-group-form__label{:for => "chat_group_チャットメンバー"} チャットメンバー
+      %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
-      / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-      = f.collection_check_boxes :user_ids, User.all, :id, :name
-      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
-      /
-        <div id='chat-group-users'>
-        <div class='chat-group-user clearfix' id='chat-group-user-22'>
-        <input name='chat_group[user_ids][]' type='hidden' value='22'>
-        <p class='chat-group-user__name'>seo_kyohei</p>
-        </div>
-        </div>
+      #chat-group-users
+        #chat-group-user-22.chat-group-user.clearfix
+          %input{:name => "chat_group[user_ids][]", :type => "hidden", :value => "#{current_user.id}"}/
+          %p.chat-group-user__name
+            = current_user.name
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
