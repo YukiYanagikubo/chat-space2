@@ -4,18 +4,15 @@
     .header
       .left-header
         .left-header__title
-          グループ名
+          = @group.name
         %ul.left-header__members
           Member：
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
+          - @group.users.each do |user|
+            %li.member
+            = user.name
       .right-header
         .right-header__button
-          Edit
+          = link_to "Edit", edit_group_path(@group.id)
     .messages
       = render @messages
     .form
