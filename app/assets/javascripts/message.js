@@ -47,8 +47,8 @@ $(document).on('turbolinks:load', function(){
 
   var interval = setInterval(function() {
     if (location.href.match(/\/groups\/\d+\/messages/)){
+      $(".messages").animate({scrollTop:$('.messages')[0].scrollHeight});
       var message_id = $('.message').last().data('id');
-      console.log(message_id);
       $.ajax({
         url: location.href,
         type: "GET",
@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function(){
         data.forEach(function(message) {
           var html = buildHTML(message);
           $('.messages').append(html);
-          $(".messages").animate({scrollTop:$('.main-contents__body__list')[0].scrollHeight});
+          $(".messages").animate({scrollTop:$('.messages')[0].scrollHeight});
         })
       })
       .fail(function() {
